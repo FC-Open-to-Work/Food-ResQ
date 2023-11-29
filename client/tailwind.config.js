@@ -4,7 +4,11 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'auth-background': "url('/src/assets/auth-background.jpg')",
+      }
+    },
   },
   plugins: [],
 }
