@@ -18,7 +18,7 @@ users_collection = users_db['users_collection']
 
 @auth.route('/is_authenticated', methods=['GET'])
 def is_authenticated():
-    return jsonify({'is_authenticated': 'username' in session})
+    return jsonify({'is_authenticated': 'email' in session})
 
 
 @auth.route('/login', methods=['POST'])
@@ -30,9 +30,9 @@ def login():
     user = users_collection.find_one({'email': email})
 
     if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
-        session['username'] = user['username']
-        current_app.logger.info(f'User {user['username']} has logged in at {datetime.datetime.now()}')
-        return jsonify({'user': session['username']}), 200
+        session['email'] = user['email']
+        current_app.logger.info(f'User {session['email']} has logged in at {datetime.datetime.now()}')
+        return jsonify({'user': user['username']}), 200
     else:
         return jsonify({'error': 'Incorrect Credentials'}), 401
 
@@ -49,7 +49,7 @@ def signup():
     if not existing_user:
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         users_collection.insert_one({'username': username, 'email': email, 'password': hashed_password})
-        current_app.logger.info(f'User {username} signed up at {datetime.datetime.now()}')
+        current_app.logger.info(f'User {username} signed up at {datetime.datetime.now()} with email {email}')
         return 'Sign up successful', 201
     else:
         return jsonify({'error': 'User already exists'}), 400
@@ -57,6 +57,6 @@ def signup():
 
 @auth.route('/logout', methods=['POST'])
 def logout():
-    current_app.logger.info(f'User {session['username']} logged out at {datetime.datetime.now()}')
-    session.pop('username', None)
+    current_app.logger.info(f'User {session['email']} logged out at {datetime.datetime.now()}')
+    session.pop('email', None)
     return 'successfully logged out', 200

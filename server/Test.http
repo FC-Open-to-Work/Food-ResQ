@@ -4,9 +4,9 @@ POST http://localhost:5000/auth/signup
 Content-Type: application/json
 
 {
-    "username": "admin",
-    "email": "admin@mail.com",
-    "password": "password"
+    "username": "annie",
+    "email": "annie@mail.com",
+    "password": "123"
 }
 
 ### LOGIN

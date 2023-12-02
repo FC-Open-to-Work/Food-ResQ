@@ -35,7 +35,7 @@ with app.app_context():
 
 # SESSION AUTHENTICATION MIDDLEWARE SETUP
 def is_authenticated():
-    return 'username' in session
+    return 'email' in session
 
 
 @app.before_request
