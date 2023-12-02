@@ -9,6 +9,7 @@ import {
     Routes,
     Route
 } from "react-router-dom";
+import DynamicRoute from "./utils/DynamicRoute";
 
 function App() {
     return (
@@ -16,16 +17,16 @@ function App() {
             <div className="h-full">
                 <Routes>
                     <Route
-                        path="/home"
-                        element={<Home/>}
+                        path="/"
+                        element={<DynamicRoute element={<Home />} authenticated={true}/>}
                     ></Route>
                     <Route
                         path="/login"
-                        element={<Login/>}
+                        element={<DynamicRoute element={<Login />} authenticated={false}/>}
                     ></Route>
                     <Route
                         path="/signup"
-                        element={<Signup/>}
+                        element={<DynamicRoute element={<Signup />} authenticated={false}/>}
                     ></Route>
                 </Routes>
             </div>

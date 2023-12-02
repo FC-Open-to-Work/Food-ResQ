@@ -1,0 +1,30 @@
+
+### REGISTER
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "email": "admin@mail.com",
+    "password": "password"
+}
+
+### LOGIN
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@mail.com",
+    "password": "password"
+}
+
+### LOGOUT
+POST http://localhost:5000/auth/logout
+
+### ADD INGRIDIENT
+POST http://localhost:5000/users_fridge
+Content-Type: application/json
+
+### GET INGRIDIENTS
+GET http://localhost:5000/users_fridge
+Content-Type: application/json
